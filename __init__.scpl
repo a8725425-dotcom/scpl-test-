@@ -1,0 +1,61 @@
+-- __init__.scpl - Test Library for SCPL
+
+(function assert-true (value label)
+    (if value
+        (Console-print (concat '[PASS] ' label))
+        (return true))
+    (Console-print (concat '[FAIL] ' label))
+    (return false))
+
+(function assert-false (value label)
+    (if (not value)
+        (Console-print (concat '[PASS] ' label))
+        (return true))
+    (Console-print (concat '[FAIL] ' label))
+    (return false))
+
+(function assert-eq (actual expected label)
+    (if (== actual expected)
+        (Console-print (concat '[PASS] ' label))
+        (return true))
+    (Console-print (concat '[FAIL] ' label))
+    (return false))
+
+(function assert-type (value expected label)
+    (if (== (type value) expected)
+        (Console-print (concat '[PASS] ' label))
+        (return true))
+    (Console-print (concat '[FAIL] ' label))
+    (return false))
+
+(function assert-neq (actual expected label)
+    (if (!= actual expected)
+        (Console-print (concat '[PASS] ' label))
+        (return true))
+    (Console-print (concat '[FAIL] ' label))
+    (return false))
+
+(function assert-nil (value label)
+    (if (== (type value) 'nil')
+        (Console-print (concat '[PASS] ' label))
+        (return true))
+    (Console-print (concat '[FAIL] ' label))
+    (return false))
+
+(function assert-error (value label)
+    (if (error? value)
+        (Console-print (concat '[PASS] ' label))
+        (return true))
+    (Console-print (concat '[FAIL] ' label))
+    (return false))
+
+(function assert-ok (value label)
+    (if (ok? value)
+        (Console-print (concat '[PASS] ' label))
+        (return true))
+    (Console-print (concat '[FAIL] ' label))
+    (return false))
+
+(function test-report (passed total)
+    (Console-print (concat '[TEST] ' passed '/' total ' passed'))
+    (return (== passed total)))
